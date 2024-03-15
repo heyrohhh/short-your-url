@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Short Urls</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+    <style>
+       
+ body{
+         margin: 0px;
+         padding: 0px;
+         background-color: rgb(232, 244, 238);
+         
+ }
+
+
+ h1{
+    text-align: center;
+    color: black;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 2rem;
+ }
+ form{
+    position: relative;
+    left: 28rem;
+    font-size: 1.4rem;
+    font-family: "Roboto Condensed", sans-serif;
+    width: 40rem;
+    
+ }
+ form input{
+    width: 15rem;
+    font-size: 1rem;
+    border-color: white;
+    border-radius:8px;
+    padding: .5rem;
+ }
+ form input:focus{
+    outline: none;
+ }
+ form input::placeholder{
+    font-size: larger;
+ }
+ form button{
+    width: auto;
+    background-color:green ;
+    border-radius: 8px;
+    height: 2rem;
+    border-color: ightgreen ;
+    color: white;
+ }
+p{
+    font-family: "Noto Sans", sans-serif;
+    position: relative;
+    left: 25.5rem;
+    font-size: 1.5rem;
+    background-color: lightgreen;
+    width: 40rem;
+    padding: .4rem;
+    border-color: white;
+    border-radius: 7px;
+    text-align: center;
+}
+thead{
+    background-color: rgb(238, 200, 144);
+    position: relative;
+    left: 15rem;
+    top: 4rem;
+    border: 2px solid black;
+    text-align: center;
+    width: auto;  
+    
+}
+tbody{
+    background-color: lightseagreen ;
+    position: relative;
+    left: 15rem;
+    top: 4rem;
+    border: 2px solid black;
+    
+    text-align: center;
+    color: white;
+}
+th,tr{
+    padding: .4rem;
+    border-radius: 7px;
+}
+.th{
+    width: 2rem;
+}
+.rd{
+    width: 50rem;
+}
+td{
+    padding: .4rem;
+    border-radius: 7px;
+}
+
+    </style>
+</head>
+<body>
+    <h1><u>Make Your Url Short</u></h1>
+    
+    <div>
+        <form method="POST" action="/url">
+            <label>Enter Your original url:</label>
+            <input 
+            type="text"
+            name="url" 
+            placeholder="http://example.com"
+            required>
+            <button  type="submit">Generate</button>
+        </form>
+    </div>
+    <% if (locals.id) { %>
+        <p> Your New URL: http://localhost:8000/url/<%= id %></p>
+       <% } %>
+    <div class="table">
+        <% if (locals.urls) { %>
+            <table>
+                <thead>
+                    <th class="th">S.NO.</th>
+                    <th class="th">ShortId</th>
+                    <th class="rd" >Redirect</th>
+                    <th class="th">Clicks</th>
+                </thead>
+                <tbody>
+                    <% urls.forEach((url,index) => { %>
+                        <tr>
+                            <td class="th"><%= index + 1 %></td>
+                            <td class="th"><%= url.shortId %></td>
+                            <td class="rd"><%= url.redirectURL %></td>
+                            <td class="th"><%= url.visitURL.length %></td>
+                        </tr>
+                    
+                    <% }) %>
+                </tbody>
+                
+            </table>
+        <% } %>
+    </div>
+          
+</body>
+</html>
